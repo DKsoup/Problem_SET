@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Problem Set Task 1</title>
+<style>
+    #gridTable td, #gridTable th {
+        border: 1px solid black;
+        width: 20px; /* Small cells to fit 100x100 grid */
+        min-width: 20px; /* Ensures all cells have the same width */
+        height: 20px;
+        padding: 2px;
+        text-align: center;
+    }
+    #title {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .hidden {
+        display: none;
+    }
+    .cellWithData {
+        background-color: indianred;
+    }
+</style>
+</head>
+<body>
+<div id="title">Sensor 100x100 Scene</div>
+<div class="hidden">{{ occupy_output }}</div>
+<table id="gridTable">
+  <thead>
+    <tr id="headerRow"></tr>
+  </thead>
+  <tbody id="gridBody"></tbody>
+</table>
+
+<script>
+    // Getting Form Elements
+    var table = document.getElementById("gridTable");
+    var headerRow = document.getElementById("headerRow");
+    var gridBody = document.getElementById("gridBody");
+
+    // Adding The Table Header
+    var emptyHeaderCell = document.createElement('th');
+    headerRow.appendChild(emptyHeaderCell);
+
+    // Adding column headers
+    for (var col = 0; col < 100; col++) {
+        var headerCell = document.createElement('th');
+        headerCell.textContent = col;
+        headerRow.appendChild(headerCell);
+    }
+
+
+    table.getElementsByTagName('thead')[0].appendChild(headerRow);
+    // Adding rows and headers
+    for (var row = 0; row < 100; row++) {
+        // Create Rows
+        var newRow = document.createElement('tr');
+
+        // Adding headers
+        var rowHeaderCell = document.createElement('th');
+        rowHeaderCell.textContent = row;
+        newRow.appendChild(rowHeaderCell);
+
+        // Adding Empty Cells
+        for (var col = 0; col < 100; col++) {
+            var newCell = document.createElement('td');
+            newRow.appendChild(newCell);
+        }
+        // Adding Rows to the Body of the Table
+        gridBody.appendChild(newRow);
+    }
+
+    // Dynamically populated data
+    var table1 = document.getElementById("gridTable");
+    var text = document.getElementsByClassName('hidden')[0].innerText;
+    if (text && text !== 'None') {
+        let arrs = JSON.parse(text)
+        for (arr of arrs) {
+          let row = arr[0][0] + 1;
+          let colum = arr[0][1] + 1;
+          table1.rows[row].cells[colum].innerText = arr[1];
+          if (arr[1] === 1) {
+            table1.rows[row].cells[colum].classList.add('cellWithData')
+          }
+        }
+    }
+
+</script>
+
+</body>
+</html>
