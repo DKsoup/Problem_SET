@@ -24,10 +24,15 @@ The main reasons for choosing HTTP as the protocol are as follows:
 **Both server and client code are written in Python**
 
 > sensor/
-> ├── service.Dockerfile 
-> ├── client.Dockerfile 
+> 
+> ├── service.Dockerfile
+> 
+> ├── client.Dockerfile
+> 
 > ├── client.py
-> ├── matrix.html 
+> 
+> ├── matrix.html
+> 
 > └── service.py 
 
 Project structure file description:
